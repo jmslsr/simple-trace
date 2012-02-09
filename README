@@ -1,0 +1,41 @@
+Simple Trace is a Python implementation of traceroute intended for operational support of network devices.  The output contains only IP addresses, giving a simple way to redirect the output to a file to be used in other tools.  A good example is to run the list through nmap to see how to access devices.
+
+Usage:
+
+simple-trace.py [options] hostname
+
+Options:
+
+-m, --max-hops: max hops before giving up (default 30)
+
+Examples:
+
+$ ./simple-trace.py 8.8.8.8
+192.168.1.1
+69.253.0.1
+68.85.153.161
+69.139.192.145
+68.86.95.141
+68.86.87.14
+75.149.231.62
+209.85.252.80
+64.233.175.109
+72.14.232.21
+8.8.8.8
+
+
+$ ./simple-trace.py 8.8.8.8 > out
+$ more out
+192.168.1.1
+69.253.0.1
+68.85.153.161
+69.139.192.145
+68.86.95.137
+68.86.87.14
+75.149.231.62
+209.85.252.80
+64.233.175.109
+216.239.49.145
+8.8.8.8
+
+$ nmap -vv -p22,23 -iL out -oG out.access
