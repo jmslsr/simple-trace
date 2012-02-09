@@ -42,10 +42,10 @@ def main(dest_name, port, max_hops):
             recv_socket.close()
 
         if curr_addr is not None:
-            curr_host = "%s (%s)" % (curr_name, curr_addr)
+            curr_host = "%s" % (curr_addr)
         else:
             curr_host = "*"
-        print "%d\t%s" % (ttl, curr_host)
+        print "%s" % (curr_host)
 
         ttl += 1
         if curr_addr == dest_addr or ttl > max_hops:
